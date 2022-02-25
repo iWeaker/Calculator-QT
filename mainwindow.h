@@ -19,8 +19,11 @@ public:
 
 private slots:
     void setNum();
+    void typeFunction();
+
 
 private:
     Ui::MainWindow *ui;
+    float addValues(float, float);
 };
 #endif // MAINWINDOW_H
