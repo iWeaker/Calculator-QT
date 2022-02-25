@@ -10,9 +10,6 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
-
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -20,10 +17,8 @@ public:
 private slots:
     void setNum();
     void typeFunction();
-
-
 private:
     Ui::MainWindow *ui;
-    float addValues(float, float);
+    void addValues(float, int);
 };
 #endif // MAINWINDOW_H

@@ -5,7 +5,8 @@
 #include <QMessageBox>
 #include <QObject>
 
-float firstValue, secondValue;
+QList<float> values[2];
+QList<bool> vBool[2];
 char calcType;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,6 +15,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+
+
+    vBool->append(false);
+    vBool->append(false);
+
+    values->append(0);
+    values->append(0);
     connect( ui->num0, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num1, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num2, SIGNAL( clicked() ), this, SLOT( setNum() ) );
@@ -46,28 +54,29 @@ void MainWindow::setNum()
 
     if(buttonSender->text().toFloat(&ok)  == true){
         if(calcType == NULL){
-            firstValue = addValues(val, firstValue);
+           addValues(val, 0);
+           ui->textEdit->setText(buttonSender->text());
         }else{
-            secondValue = addValues(val, secondValue);
+           addValues(val, 1);
+           ui->textEdit->setText(buttonSender->text());
         }
     }
-    ui->textEdit->setText(buttonSender->text());
+
 }
 
-float addValues(float value, float theValue){
-    float t = theValue;
-    if(t == NULL){
-        t = value;
+void MainWindow::addValues(float value, int theValue){
+
+    if(vBool->value(theValue) == false){
+        values->value(theValue, value);
     }else{
-        t *= 10;
-        t += value;
+        values->value(theValue, (values->value(theValue) * 10) + value);
     }
-    return t;
 }
 
 void MainWindow::typeFunction(){
-    if(firstValue != NULL && calcType == NULL){
-        secondValue = NULL;
+    if(vBool->value(0) == true && calcType == NULL){
+        values->value(1, 0);
+        vBool->value(1, false);
     }
 
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
@@ -79,7 +88,7 @@ void MainWindow::typeFunction(){
      * - = 2
      * / = 3
      * */
-    if(firstValue != NULL){
+    if(vBool->value(0)){
         switch(myOptions.indexOf(buttonSender->text())){
             case 0:
                 calcType = '+';
