@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>289</width>
+    <width>292</width>
     <height>477</height>
    </rect>
   </property>
@@ -66,6 +66,9 @@
       <height>50</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 200);
 border-radius: 25px;
@@ -90,6 +93,9 @@ border: 0;
       <width>16777215</width>
       <height>50</height>
      </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255,165, 0, 100);
@@ -121,6 +127,9 @@ border: 0; </string>
       <height>50</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255,165, 0, 100);
 border-radius: 25px;
@@ -150,6 +159,9 @@ border: 0; </string>
       <width>16777215</width>
       <height>50</height>
      </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255,165, 0, 100);
@@ -181,6 +193,9 @@ border: 0; </string>
       <height>50</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255,165, 0, 100);
 border-radius: 25px;
@@ -205,6 +220,9 @@ border: 0; </string>
       <height>50</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255,165, 0, 100);
 border-radius: 25px;
@@ -222,6 +240,9 @@ border: 0; </string>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 200);
@@ -241,6 +262,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -258,6 +282,9 @@ border: 0; </string>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
@@ -277,6 +304,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -294,6 +324,9 @@ border: 0; </string>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
@@ -313,6 +346,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -330,6 +366,9 @@ border: 0; </string>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
@@ -349,6 +388,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -366,6 +408,9 @@ border: 0; </string>
       <width>111</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
@@ -385,6 +430,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -402,6 +450,9 @@ border: 0; </string>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
@@ -421,6 +472,9 @@ border: 0; </string>
       <height>50</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(91, 91, 91, 100);
 border-radius: 25px;
@@ -430,13 +484,46 @@ border: 0; </string>
      <string>4</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>251</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255,255, 255, 200);</string>
+    </property>
+   </widget>
+   <zorder>widget</zorder>
+   <zorder>label</zorder>
+   <zorder>clearBtn</zorder>
+   <zorder>divBtn</zorder>
+   <zorder>opMulti</zorder>
+   <zorder>subBtn</zorder>
+   <zorder>addBtn</zorder>
+   <zorder>equalBtn</zorder>
+   <zorder>backBtn</zorder>
+   <zorder>num8</zorder>
+   <zorder>num9</zorder>
+   <zorder>num5</zorder>
+   <zorder>num6</zorder>
+   <zorder>num3</zorder>
+   <zorder>decimalBtn</zorder>
+   <zorder>num2</zorder>
+   <zorder>num0</zorder>
+   <zorder>num1</zorder>
+   <zorder>num7</zorder>
+   <zorder>num4</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>289</width>
+     <width>292</width>
      <height>21</height>
     </rect>
    </property>

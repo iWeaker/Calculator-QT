@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    setStyleSheet("background:transparent;");
+    setAttribute(Qt::WA_TranslucentBackground);
+    setWindowFlags(Qt::FramelessWindowHint);
+
+
     //setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 
     ui->setupUi(this);
@@ -37,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect( ui->opMulti, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
     connect( ui->subBtn, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
 }
+
 
 MainWindow::~MainWindow()
 {
