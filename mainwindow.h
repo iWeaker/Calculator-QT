@@ -24,9 +24,14 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QPoint startPos;
     void addValues(int, int);
     int getDecimalCount(float);
     void evaluationBackFunction(int);
     int getDecimalPart(float);
+protected:
+    //MouseEvents
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 #endif // MAINWINDOW_H

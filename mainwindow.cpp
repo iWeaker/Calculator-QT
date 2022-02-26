@@ -49,6 +49,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    startPos = event->pos();
+    QWidget::mousePressEvent(event);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    QPoint delta = event->pos() - startPos;
+    QWidget * w = window();
+    if(w)
+        w->move(w->pos() + delta);
+    QWidget::mouseMoveEvent(event);
+}
 void MainWindow::setNum()
 {
     float val;
