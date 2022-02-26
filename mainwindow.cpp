@@ -8,8 +8,8 @@
 #include <string.h>
 #include <stdio.h>
 
-float values[2] = {0, 0 };
-bool vBool[2] = {false, false};
+float values[3] = {0, 0, 0};
+bool vBool[3] = {false, false, false};
 char calcType = NULL;
 bool decimalType = false;
 MainWindow::MainWindow(QWidget *parent)
@@ -109,8 +109,9 @@ void MainWindow::typeFunction(){
             case 2:
                 calcType = '-';
                 break;
-                calcType = '/';
+
             case 3:
+                calcType = '/';
                 break;
         }
     }
@@ -118,8 +119,8 @@ void MainWindow::typeFunction(){
 
 void MainWindow::on_clearBtn_clicked()
 {
-    values[0] = values[1] = 0;
-    vBool[0] = vBool[1] = false;
+    values[0] = values[1] = values[2] = 0;
+    vBool[0] = vBool[1] = vBool[2] = false;
 
     calcType = NULL;
     ui->textEdit->setText("");
@@ -156,18 +157,21 @@ int MainWindow::getDecimalCount(float value ){
 
 int MainWindow::getDecimalPart(float number){
     return 0;
-
 }
 
 void MainWindow::on_backBtn_clicked()
 {
-    if(calcType == NULL){
+    if(calcType == NULL || vBool[1] == false){
         evaluationBackFunction(0);
+    }else{
+        evaluationBackFunction(1);
     }
+
+    vBool[2] = false;
+    values[2] = 0;
 }
 
-float MainWindow::evaluationBackFunction(int temp){
-
+void MainWindow::evaluationBackFunction(int temp){
     if(vBool[temp]){
         QString b;
         b.setNum(values[temp]);
@@ -198,38 +202,42 @@ float MainWindow::evaluationBackFunction(int temp){
                 i /= 10;
                 values[temp] = i;
 
-
                 QString b;
                 b.setNum(values[temp]);
                 ui->textEdit->setText(b);
 
             }
         }
-        //values[temp].toChar();
     }
-    return 0.0;
 }
 
 void MainWindow::on_equalBtn_clicked()
 {
     float total = 0;
-    if(vBool[0] && vBool[1] && calcType != NULL){
+    if(vBool[1]){
+        vBool[2] = true;
+        values[2] = values[1];
+    }
+    if(vBool[0] && vBool[2] && calcType != NULL){
         switch(calcType){
             case '+':
-                total = (values[0] + values[1]);
+                total = (values[0] + values[2]);
                 break;
             case '-':
-                total = (values[0] - values[1]);
+                total = (values[0] - values[2]);
                 break;
             case '*':
-                total = (values[0] * values[1]);
+                total = (values[0] * values[2]);
                 break;
             case '/':
-                total = (values[0] / values[1]);
+                total = (values[0] / values[2]);
                 break;
         }
         ui->textEdit->setText(QString::number(total));
         values[0] = total;
+        vBool[1] = false;
+
+
     }
 }
 

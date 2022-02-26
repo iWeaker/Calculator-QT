@@ -26,7 +26,7 @@ private:
     Ui::MainWindow *ui;
     void addValues(int, int);
     int getDecimalCount(float);
-    float evaluationBackFunction(int);
+    void evaluationBackFunction(int);
     int getDecimalPart(float);
 };
 #endif // MAINWINDOW_H
