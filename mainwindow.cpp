@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QObject>
 #include <QtMath>
+#include <string.h>
+#include <stdio.h>
 
 float values[2] = {0, 0 };
 bool vBool[2] = {false, false};
@@ -14,10 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
-
-
     //Numerical function
     connect( ui->num0, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num1, SIGNAL( clicked() ), this, SLOT( setNum() ) );
@@ -34,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect( ui->divBtn, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
     connect( ui->opMulti, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
     connect( ui->subBtn, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
-
 }
 
 MainWindow::~MainWindow()
@@ -63,12 +61,10 @@ void MainWindow::addValues(int value, int theValue){
     if(vBool[theValue] == false){
          if(decimalType == false){
             values[theValue] = value;
-
          }else{
              values[theValue] += value / qPow(10, getDecimalCount(theValue) + 1);
          }
          vBool[theValue] = true;
-
     }else{
         if(decimalType == false){
             values[theValue] *= 10;
@@ -77,7 +73,6 @@ void MainWindow::addValues(int value, int theValue){
             values[theValue] += value / qPow(10, getDecimalCount(theValue) + 1);
         }
         vBool[theValue] = true;
-
     }
 
     QString b;
@@ -87,6 +82,7 @@ void MainWindow::addValues(int value, int theValue){
 
 
 void MainWindow::typeFunction(){
+    decimalType = false;
     if(vBool[0] == true && calcType != NULL){
         values[1] = 0;
         vBool[1]  = false;
@@ -117,11 +113,8 @@ void MainWindow::typeFunction(){
             case 3:
                 break;
         }
-
     }
 }
-
-
 
 void MainWindow::on_clearBtn_clicked()
 {
@@ -139,7 +132,7 @@ void MainWindow::on_decimalBtn_clicked()
         if(vBool[0] == false){
             ui->textEdit->setText("0.");
         }else{
-           QString s = ui->textEdit->placeholderText();
+           QString s = ui->textEdit->toPlainText();
            ui->textEdit->setText(s+".");
         }
     }
@@ -148,7 +141,6 @@ void MainWindow::on_decimalBtn_clicked()
 int MainWindow::getDecimalCount(float value ){
     bool start = false;
     int count = 0;
-
     QString b;
     b.number(value);
 
@@ -160,6 +152,62 @@ int MainWindow::getDecimalCount(float value ){
         }
     }
     return count;
+}
+
+int MainWindow::getDecimalPart(float number){
+    return 0;
+
+}
+
+void MainWindow::on_backBtn_clicked()
+{
+    if(calcType == NULL){
+        evaluationBackFunction(0);
+    }
+}
+
+float MainWindow::evaluationBackFunction(int temp){
+
+    if(vBool[temp]){
+        QString b;
+        b.setNum(values[temp]);
+        if(b.length() == 1){
+            vBool[0] = vBool[1] = false;
+            calcType = NULL;
+            decimalType = false;
+            ui->textEdit->clear();
+
+        }else if(b.length() > 1){
+            if(decimalType == true){
+                int d = getDecimalPart(values[temp]) / 10;
+                int i = (int)values[temp];
+                QString a;
+                a.setNum(values[temp]);
+                float f = i + (d / (qPow(10, a.length())));
+                values[temp] = f;
+
+                QString b;
+                b.setNum(values[temp]);
+                ui->textEdit->setText(b);
+
+                if(getDecimalPart(values[temp]) == 0){
+                    decimalType = false;
+                }
+            }else{
+                int i =  (int)values[temp];
+                i /= 10;
+                values[temp] = i;
+
+
+                QString b;
+                b.setNum(values[temp]);
+                ui->textEdit->setText(b);
+
+            }
+        }
+        //values[temp].toChar();
+    }
+    return 0.0;
 }
 
 void MainWindow::on_equalBtn_clicked()
@@ -184,6 +232,8 @@ void MainWindow::on_equalBtn_clicked()
         values[0] = total;
     }
 }
+
+
 
 
 

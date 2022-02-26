@@ -18,14 +18,15 @@ private slots:
     void setNum();
     void typeFunction();
     void on_clearBtn_clicked();
-
     void on_equalBtn_clicked();
-
     void on_decimalBtn_clicked();
+    void on_backBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
     void addValues(int, int);
     int getDecimalCount(float);
+    float evaluationBackFunction(int);
+    int getDecimalPart(float);
 };
 #endif // MAINWINDOW_H
