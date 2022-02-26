@@ -4,10 +4,12 @@
 #include <QtGui>
 #include <QMessageBox>
 #include <QObject>
+#include <QtMath>
 
 float values[2] = {0, 0 };
 bool vBool[2] = {false, false};
 char calcType = NULL;
+bool decimalType = false;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -59,12 +61,23 @@ void MainWindow::setNum()
 void MainWindow::addValues(int value, int theValue){
 
     if(vBool[theValue] == false){
-        values[theValue] = value;
-        vBool[theValue] = true;
+         if(decimalType == false){
+            values[theValue] = value;
+
+         }else{
+             values[theValue] += value / qPow(10, getDecimalCount(theValue) + 1);
+         }
+         vBool[theValue] = true;
 
     }else{
-        values[theValue] *= 10;
-        values[theValue] += value;
+        if(decimalType == false){
+            values[theValue] *= 10;
+            values[theValue] += value;
+        }else{
+            values[theValue] += value / qPow(10, getDecimalCount(theValue) + 1);
+        }
+        vBool[theValue] = true;
+
     }
 
     QString b;
@@ -119,6 +132,35 @@ void MainWindow::on_clearBtn_clicked()
     ui->textEdit->setText("");
 }
 
+void MainWindow::on_decimalBtn_clicked()
+{
+    if(decimalType == false){
+        decimalType = true;
+        if(vBool[0] == false){
+            ui->textEdit->setText("0.");
+        }else{
+           QString s = ui->textEdit->placeholderText();
+           ui->textEdit->setText(s+".");
+        }
+    }
+}
+
+int MainWindow::getDecimalCount(float value ){
+    bool start = false;
+    int count = 0;
+
+    QString b;
+    b.number(value);
+
+    for(QString val :   b){
+        if(val == "."){
+            start = true;
+        }else if(start){
+            count++;
+        }
+    }
+    return count;
+}
 
 void MainWindow::on_equalBtn_clicked()
 {
@@ -129,14 +171,20 @@ void MainWindow::on_equalBtn_clicked()
                 total = (values[0] + values[1]);
                 break;
             case '-':
+                total = (values[0] - values[1]);
                 break;
             case '*':
+                total = (values[0] * values[1]);
                 break;
             case '/':
+                total = (values[0] / values[1]);
                 break;
         }
         ui->textEdit->setText(QString::number(total));
         values[0] = total;
     }
 }
+
+
+
 

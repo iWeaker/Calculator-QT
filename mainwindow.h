@@ -21,8 +21,11 @@ private slots:
 
     void on_equalBtn_clicked();
 
+    void on_decimalBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     void addValues(int, int);
+    int getDecimalCount(float);
 };
 #endif // MAINWINDOW_H
