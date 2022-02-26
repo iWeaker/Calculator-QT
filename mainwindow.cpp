@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    //setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+
     ui->setupUi(this);
     //Numerical function
     connect( ui->num0, SIGNAL( clicked() ), this, SLOT( setNum() ) );
@@ -77,7 +80,8 @@ void MainWindow::addValues(int value, int theValue){
 
     QString b;
     b.setNum(values[theValue]);
-    ui->textEdit->setText(b);
+
+    ui->label->setText(b);
 }
 
 
@@ -123,7 +127,7 @@ void MainWindow::on_clearBtn_clicked()
     vBool[0] = vBool[1] = vBool[2] = false;
 
     calcType = NULL;
-    ui->textEdit->setText("");
+    ui->label->setText("");
 }
 
 void MainWindow::on_decimalBtn_clicked()
@@ -131,10 +135,10 @@ void MainWindow::on_decimalBtn_clicked()
     if(decimalType == false){
         decimalType = true;
         if(vBool[0] == false){
-            ui->textEdit->setText("0.");
+            ui->label->setText("0.");
         }else{
-           QString s = ui->textEdit->toPlainText();
-           ui->textEdit->setText(s+".");
+           QString s = ui->label->text();
+           ui->label->setText(s+".");
         }
     }
 }
@@ -179,7 +183,7 @@ void MainWindow::evaluationBackFunction(int temp){
             vBool[0] = vBool[1] = false;
             calcType = NULL;
             decimalType = false;
-            ui->textEdit->clear();
+            ui->label->clear();
 
         }else if(b.length() > 1){
             if(decimalType == true){
@@ -192,7 +196,7 @@ void MainWindow::evaluationBackFunction(int temp){
 
                 QString b;
                 b.setNum(values[temp]);
-                ui->textEdit->setText(b);
+                ui->label->setText(b);
 
                 if(getDecimalPart(values[temp]) == 0){
                     decimalType = false;
@@ -204,8 +208,7 @@ void MainWindow::evaluationBackFunction(int temp){
 
                 QString b;
                 b.setNum(values[temp]);
-                ui->textEdit->setText(b);
-
+                ui->label->setText(b);
             }
         }
     }
@@ -233,11 +236,9 @@ void MainWindow::on_equalBtn_clicked()
                 total = (values[0] / values[2]);
                 break;
         }
-        ui->textEdit->setText(QString::number(total));
+        ui->label->setText(QString::number(total));
         values[0] = total;
         vBool[1] = false;
-
-
     }
 }
 
