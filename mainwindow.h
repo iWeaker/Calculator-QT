@@ -17,8 +17,12 @@ public:
 private slots:
     void setNum();
     void typeFunction();
+    void on_clearBtn_clicked();
+
+    void on_equalBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
-    void addValues(float, int);
+    void addValues(int, int);
 };
 #endif // MAINWINDOW_H

@@ -5,10 +5,9 @@
 #include <QMessageBox>
 #include <QObject>
 
-QList<float> values[2];
-QList<bool> vBool[2];
-char calcType;
-
+float values[2] = {0, 0 };
+bool vBool[2] = {false, false};
+char calcType = NULL;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,11 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    vBool->append(false);
-    vBool->append(false);
-
-    values->append(0);
-    values->append(0);
+    //Numerical function
     connect( ui->num0, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num1, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num2, SIGNAL( clicked() ), this, SLOT( setNum() ) );
@@ -32,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect( ui->num7, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num8, SIGNAL( clicked() ), this, SLOT( setNum() ) );
     connect( ui->num9, SIGNAL( clicked() ), this, SLOT( setNum() ) );
-
+    //Calculation function
     connect( ui->addBtn, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
     connect( ui->divBtn, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
     connect( ui->opMulti, SIGNAL( clicked() ), this, SLOT( typeFunction() ) );
@@ -43,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-
 }
 
 void MainWindow::setNum()
@@ -52,31 +46,37 @@ void MainWindow::setNum()
     bool ok;
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
 
-    if(buttonSender->text().toFloat(&ok)  == true){
+    val = buttonSender->text().toInt(&ok);
+    if(ok){
         if(calcType == NULL){
            addValues(val, 0);
-           ui->textEdit->setText(buttonSender->text());
         }else{
            addValues(val, 1);
-           ui->textEdit->setText(buttonSender->text());
         }
     }
-
 }
 
-void MainWindow::addValues(float value, int theValue){
+void MainWindow::addValues(int value, int theValue){
 
-    if(vBool->value(theValue) == false){
-        values->value(theValue, value);
+    if(vBool[theValue] == false){
+        values[theValue] = value;
+        vBool[theValue] = true;
+
     }else{
-        values->value(theValue, (values->value(theValue) * 10) + value);
+        values[theValue] *= 10;
+        values[theValue] += value;
     }
+
+    QString b;
+    b.setNum(values[theValue]);
+    ui->textEdit->setText(b);
 }
+
 
 void MainWindow::typeFunction(){
-    if(vBool->value(0) == true && calcType == NULL){
-        values->value(1, 0);
-        vBool->value(1, false);
+    if(vBool[0] == true && calcType != NULL){
+        values[1] = 0;
+        vBool[1]  = false;
     }
 
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
@@ -88,10 +88,11 @@ void MainWindow::typeFunction(){
      * - = 2
      * / = 3
      * */
-    if(vBool->value(0)){
+    if(vBool[0]){
         switch(myOptions.indexOf(buttonSender->text())){
             case 0:
                 calcType = '+';
+
                 break;
             case 1:
                 calcType = '*';
@@ -103,6 +104,39 @@ void MainWindow::typeFunction(){
             case 3:
                 break;
         }
+
+    }
+}
+
+
+
+void MainWindow::on_clearBtn_clicked()
+{
+    values[0] = values[1] = 0;
+    vBool[0] = vBool[1] = false;
+
+    calcType = NULL;
+    ui->textEdit->setText("");
+}
+
+
+void MainWindow::on_equalBtn_clicked()
+{
+    float total = 0;
+    if(vBool[0] && vBool[1] && calcType != NULL){
+        switch(calcType){
+            case '+':
+                total = (values[0] + values[1]);
+                break;
+            case '-':
+                break;
+            case '*':
+                break;
+            case '/':
+                break;
+        }
+        ui->textEdit->setText(QString::number(total));
+        values[0] = total;
     }
 }
 
